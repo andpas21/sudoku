@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Sudoku">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Sudoku</title>
+</head>
+<body>
+  <main>
+    <section id="view-game" class="view active">
+      <div id="new-panel">
+        <h1>Nuovo sudoku</h1>
+        <p class="muted">Scegli la difficoltà. Più è difficile, più punti vale.</p>
+        <div class="diff-list">
+          <button class="diff" data-diff="easy"><span>Facile</span><b>1 punto</b></button>
+          <button class="diff" data-diff="medium"><span>Medio</span><b>3 punti</b></button>
+          <button class="diff" data-diff="hard"><span>Difficile</span><b>5 punti</b></button>
+          <button class="diff" data-diff="expert"><span>Esperto</span><b>10 punti</b></button>
+        </div>
+        <button id="btn-resume" class="secondary" hidden>Riprendi partita</button>
+      </div>
+
+      <div id="game-panel" hidden>
+        <div class="topbar">
+          <span id="diff-label" class="pill"></span>
+          <span id="timer" aria-label="Tempo">00:00</span>
+          <span id="points-label" class="pill"></span>
+        </div>
+        <div id="board" role="grid" aria-label="Griglia sudoku"></div>
+        <div id="pad"></div>
+        <div class="actions">
+          <button id="btn-erase" class="secondary">Cancella</button>
+          <button id="btn-hint" class="secondary">Aiuto (3)</button>
+          <button id="btn-giveup" class="danger">Mi arrendo</button>
+          <button id="btn-new" class="secondary">Nuova</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-leaderboard" class="view">
+      <h1>Classifica</h1>
+      <p class="notice">Per ora la classifica è locale (solo questo dispositivo). Quella globale arriverà con un servizio online.</p>
+      <div class="seg" id="lb-filter"></div>
+      <div id="lb-summary"></div>
+      <ol id="lb-list" class="rows"></ol>
+    </section>
+
+    <section id="view-profile" class="view">
+      <h1>Profilo</h1>
+      <label class="name-row">Nome
+        <input id="player-name" type="text" maxlength="20" autocomplete="off">
+      </label>
+      <div id="profile-cards" class="cards"></div>
+      <h2>Per difficoltà</h2>
+      <div id="profile-table"></div>
+      <h2>Ultime partite</h2>
+      <ol id="profile-recent" class="rows"></ol>
+      <button id="btn-reset" class="danger wide">Azzera statistiche</button>
+    </section>
+  </main>
+
+  <nav class="tabs">
+    <button data-view="game" class="active"><i>▦</i>Gioca</button>
+    <button data-view="leaderboard"><i>🏆</i>Classifica</button>
+    <button data-view="profile"><i>👤</i>Profilo</button>
+  </nav>
+
+  <dialog id="dialog">
+    <h3 id="dlg-title"></h3>
+    <p id="dlg-text"></p>
+    <div class="dlg-actions">
+      <button id="dlg-cancel" class="secondary">Annulla</button>
+      <button id="dlg-ok">OK</button>
+    </div>
+  </dialog>
+
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
